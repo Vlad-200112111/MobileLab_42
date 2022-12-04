@@ -2,24 +2,31 @@ package com.example.mobilelab_42;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ListActivity;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Объявим переменные компонентов
-    Button button;
-    TextView textView;
 
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDb;
+
+
+    private List<String> list;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +47,20 @@ public class MainActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
-        button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
+        ListView listView = findViewById(R.id.listViewMain);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String product = "";
+        Cursor cursor = mDb.rawQuery("SELECT * FROM citizenship", null);
 
-                Cursor cursor = mDb.rawQuery("SELECT * FROM citizenship", null);
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast()) {
-                    product += cursor.getString(1) + " | ";
-                    cursor.moveToNext();
-                }
-                cursor.close();
 
-                textView.setText(product);
-            }
-        });
+        final String[] catNames = new String[] {
+                "Рыжик", "Барсик", "Мурзик", "Мурка", "Васька",
+                "Томасина", "Кристина", "Пушок", "Дымка", "Кузя",
+                "Китти", "Масяня", "Симба"
+        };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                R.layout.custom_list_view, catNames);
+
+        listView.setAdapter(adapter);
     }
 }
