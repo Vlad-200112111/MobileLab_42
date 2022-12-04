@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundMain"
     tools:context=".SplashActivity">
 
     <LinearLayout
@@ -24,9 +25,28 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="312dp"
             android:layout_margin="30dp"
             app:srcCompat="@drawable/main" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="МИНИСТЕРСТВО ВНУТРЕННИХ ДЕЛ"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="РОССИЙСКОЙ ФЕДЕРАЦИИ"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
