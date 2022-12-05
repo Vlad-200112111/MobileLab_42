@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDb;
 
-    final String LOG_TAG = "myLogs";
-
-    private List<String> list;
-    private ArrayAdapter<String> adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
                 Intent intent = new Intent(MainActivity.this, CitizenshipByIdActivity.class); //это код из фрагмента
-                intent.putExtra("pos", ar_ids.get(position));
+                intent.putExtra("pos", String.valueOf(ar_ids.get(position)));
                 startActivity(intent);
             }
         });
